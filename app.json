@@ -1,0 +1,26 @@
+{
+  "expo": {
+    "name": "SogenNet",
+    "slug": "sogennet",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/logo.png",
+    "userInterfaceStyle": "dark",
+    "splash": {
+      "backgroundColor": "#0a0a0f",
+      "resizeMode": "contain"
+    },
+    "assetBundlePatterns": ["**/*"],
+    "ios": { "supportsTablet": true },
+    "android": {
+      "package": "com.sogennet.app",
+      "adaptiveIcon": {
+        "backgroundColor": "#0a0a0f"
+      },
+      "permissions": ["INTERNET"]
+    },
+    "plugins": [
+      "expo-secure-store"
+    ]
+  }
+}
