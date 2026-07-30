@@ -16,19 +16,29 @@ jobs:
         with:
           node-version: 20
 
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v3
+
       - name: Install deps
         run: npm install
 
-      - name: Install EAS
-        run: npm install -g eas-cli
+      - name: Expo prebuild (generate android folder)
+        run: npx expo prebuild --platform android --clean
 
       - name: Build APK
-        run: eas build --platform android --profile production --non-interactive
-        env:
-          EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
+        run: cd android && ./gradlew assembleRelease
+
+      - name: Find APK
+        run: find . -name "*.apk" -type f
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
-          name: SogenNet.apk
-          path: ./*.apk
+          name: SogenNet-release
+          path: android/app/build/outputs/apk/release/*.apk
