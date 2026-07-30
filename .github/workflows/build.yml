@@ -31,14 +31,14 @@ jobs:
       - name: Expo prebuild (generate android folder)
         run: npx expo prebuild --platform android --clean
 
-      - name: Build APK
-        run: cd android && ./gradlew assembleRelease
+      - name: Build Debug APK
+        run: cd android && ./gradlew assembleDebug
 
-      - name: Find APK
-        run: find . -name "*.apk" -type f
+      - name: Find Debug APK
+        run: find . -name "*-debug.apk" -type f
 
-      - name: Upload APK
+      - name: Upload Debug APK
         uses: actions/upload-artifact@v4
         with:
-          name: SogenNet-release
-          path: android/app/build/outputs/apk/release/*.apk
+          name: SogenNet-debug
+          path: android/app/build/outputs/apk/debug/*.apk
